@@ -2,190 +2,166 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>گپ بتمنی | Gap Batman</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap');
-        * { font-family: 'Vazirmatn', sans-serif; box-sizing: border-box; }
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: #0b141a; }
-        ::-webkit-scrollbar-thumb { background: #202c33; border-radius: 4px; }
-        .bg-telegram-sidebar { background-color: #111b21; }
-        .bg-telegram-chat { background-color: #0b141a; }
-        .bg-telegram-header { background-color: #202c33; }
-        .chat-bg { background-color: #0b141a; background-image: radial-gradient(#1f2c34 1px, transparent 1px); background-size: 20px 20px; }
+        * { font-family: 'Vazirmatn', sans-serif; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0e1621; }
+        ::-webkit-scrollbar-thumb { background: #2b3847; border-radius: 4px; }
+        .bg-telegram-main { background-color: #0e1621; }
+        .bg-telegram-sidebar { background-color: #17212b; }
+        .bg-telegram-header { background-color: #17212b; }
+        .chat-pattern { background-color: #0e1621; background-image: radial-gradient(#1f2c34 0.75px, transparent 0.75px); background-size: 16px 16px; }
     </style>
 </head>
-<body class="bg-[#0b141a] text-gray-100 h-screen overflow-hidden flex flex-col">
+<body class="bg-telegram-main text-gray-100 h-[100dvh] overflow-hidden flex flex-col">
 
-    <!-- Splash Screen / لودینگ اولیه -->
-    <div id="splash-screen" class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center transition-opacity duration-700">
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="fixed inset-0 bg-[#0e1621] z-50 flex flex-col items-center justify-center transition-opacity duration-700">
         <div class="relative mb-6 animate-pulse">
-            <!-- آرم بتمن -->
-            <svg class="w-32 h-32 text-black drop-shadow-2xl" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C9.5 2 7.8 3.3 6.5 4.8C5 6.5 3.5 9 3.5 12C3.5 13.5 4 15 5 16.5C5.8 17.8 7 19 8.5 19.5C7.8 18.5 7.5 17 7.5 15.5C7.5 13 9.5 11 12 11C14.5 11 16.5 13 16.5 15.5C16.5 17 16.2 18.5 15.5 19.5C17 19 18.2 17.8 19 16.5C20 15 20.5 13.5 20.5 12C20.5 9 19 6.5 17.5 4.8C16.2 3.3 14.5 2 12 2Z"/>
-            </svg>
+            <div class="w-24 h-24 bg-black/60 border border-yellow-500/40 rounded-3xl flex items-center justify-center text-yellow-500 text-5xl shadow-2xl">
+                <i class="fa-solid fa-bat"></i>
+            </div>
         </div>
-        <div class="w-48 h-1.5 bg-gray-200 rounded-full overflow-hidden">
-            <div id="loading-bar" class="h-full bg-black transition-all duration-500 w-0"></div>
+        <div class="w-40 h-1 bg-gray-800 rounded-full overflow-hidden">
+            <div id="loading-bar" class="h-full bg-yellow-500 transition-all duration-500 w-0"></div>
         </div>
-        <span class="text-gray-500 text-xs mt-3 font-medium tracking-widest">GAP BATMAN SECURE CHAT</span>
+        <span class="text-gray-400 text-[11px] mt-3 tracking-widest font-medium">GAP BATMAN SECURE</span>
     </div>
 
-    <!-- Login Modal / صفحه ورود کاربر و مالک -->
-    <div id="login-modal" class="fixed inset-0 bg-black/80 z-40 hidden flex items-center justify-center p-4">
-        <div class="bg-[#111b21] border border-gray-800 p-6 rounded-2xl w-full max-w-sm shadow-2xl">
+    <!-- Professional Login Modal -->
+    <div id="login-modal" class="fixed inset-0 bg-black/85 z-40 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-[#17212b] border border-[#2b3847] p-7 rounded-3xl w-full max-w-sm shadow-2xl">
             <div class="text-center mb-6">
-                <div class="w-16 h-16 bg-black/40 border border-yellow-500/40 rounded-full flex items-center justify-center mx-auto mb-3 text-yellow-500 text-2xl">
+                <div class="w-20 h-20 bg-black border-2 border-yellow-500/50 rounded-2xl flex items-center justify-center mx-auto mb-4 text-yellow-500 text-3xl shadow-lg">
                     <i class="fa-solid fa-bat"></i>
                 </div>
-                <h2 class="text-xl font-bold text-white">ورود به گپ بتمنی</h2>
-                <p class="text-xs text-gray-400 mt-1">نام خود را وارد کنید یا با رمز مالک وارد شوید</p>
+                <h2 class="text-xl font-bold text-white tracking-wide">ورود به گپ بتمنی</h2>
+                <p class="text-xs text-gray-400 mt-1">نام مستعار یا رمز مدیریت را وارد کنید</p>
             </div>
             
             <div class="space-y-4">
                 <div>
-                    <label class="text-xs text-gray-400 block mb-1">نام نمایشی شما</label>
-                    <input type="text" id="username-input" placeholder="مثلا: علی یا batman..." class="w-full bg-[#202c33] border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-yellow-500">
+                    <label class="text-xs text-gray-400 block mb-1.5">نام نمایشی</label>
+                    <input type="text" id="username-input" placeholder="مثلا: علی..." class="w-full bg-[#212f3d] border border-[#2b3847] rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-yellow-500 transition">
                 </div>
                 <div>
-                    <label class="text-xs text-gray-400 block mb-1">رمز ورود مالک (اختیاری)</label>
-                    <input type="password" id="owner-pass-input" placeholder="رمز عبور مالک..." class="w-full bg-[#202c33] border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-yellow-500">
+                    <label class="text-xs text-gray-400 block mb-1.5">رمز ورود مالک (اختیاری)</label>
+                    <input type="password" id="owner-pass-input" placeholder="رمز عبور..." class="w-full bg-[#212f3d] border border-[#2b3847] rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-yellow-500 transition">
                 </div>
-                <button onclick="handleLogin()" class="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-2.5 rounded-xl transition duration-200 shadow-lg text-sm">
+                <button onclick="handleLogin()" class="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-3 rounded-xl transition shadow-lg text-sm mt-2">
                     ورود به پیام‌رسان
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Main Messenger App / بدنه اصلی پیام‌رسان -->
-    <div id="app-container" class="flex flex-1 overflow-hidden hidden">
+    <!-- Main App Container -->
+    <div id="app-container" class="flex flex-1 overflow-hidden hidden relative">
         
-        <!-- Sidebar Navigation (Telegram Style Categories) -->
-        <div class="w-16 bg-telegram-sidebar border-l border-[#202c33] flex flex-col items-center py-3 justify-between z-10">
+        <!-- Sidebar Navigation (Telegram Style - Desktop) -->
+        <div class="hidden md:flex w-16 bg-telegram-sidebar border-l border-[#2b3847] flex-col items-center py-3 justify-between z-20">
             <div class="flex flex-col space-y-4">
-                <div class="w-10 h-10 rounded-full bg-black border border-yellow-500/50 flex items-center justify-center text-yellow-500 shadow-md cursor-pointer">
+                <div class="w-10 h-10 rounded-2xl bg-black border border-yellow-500/50 flex items-center justify-center text-yellow-500 shadow-md">
                     <i class="fa-solid fa-bat"></i>
                 </div>
-                <div class="w-10 h-10 rounded-xl bg-[#202c33] hover:bg-[#2a3942] flex items-center justify-center text-yellow-400 cursor-pointer relative group transition" title="گپ بتمنی">
+                <div class="w-10 h-10 rounded-xl bg-[#2b3847] flex items-center justify-center text-yellow-400 cursor-pointer shadow">
                     <i class="fa-solid fa-comments text-lg"></i>
-                    <span class="absolute top-1 right-1 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-[#111b21]"></span>
-                </div>
-                <div class="w-10 h-10 rounded-xl hover:bg-[#2a3942] flex items-center justify-center text-gray-400 cursor-pointer transition" title="گروه‌ها (قفل)">
-                    <i class="fa-solid fa-users text-sm opacity-50"></i>
-                </div>
-                <div class="w-10 h-10 rounded-xl hover:bg-[#2a3942] flex items-center justify-center text-gray-400 cursor-pointer transition" title="کانال‌ها (قفل)">
-                    <i class="fa-solid fa-bullhorn text-sm opacity-50"></i>
                 </div>
             </div>
             <div class="flex flex-col space-y-3">
-                <div class="w-10 h-10 rounded-xl hover:bg-[#2a3942] flex items-center justify-center text-gray-400 cursor-pointer transition" title="تنظیمات">
-                    <i class="fa-solid fa-gear text-sm"></i>
+                <div onclick="openOwnerBadgeSettings()" id="owner-settings-btn" class="w-10 h-10 rounded-xl hover:bg-[#2b3847] flex items-center justify-center text-yellow-500 cursor-pointer transition hidden" title="تنظیم عکس کوچک مالک">
+                    <i class="fa-solid fa-image text-sm"></i>
                 </div>
             </div>
         </div>
 
-        <!-- Chat List Panel (Left Side of Chat) -->
-        <div class="w-80 bg-telegram-sidebar border-l border-[#202c33] hidden md:flex flex-col">
-            <div class="p-3 border-b border-[#202c33] flex items-center justify-between">
+        <!-- Chat List Panel -->
+        <div class="hidden md:flex w-80 bg-telegram-sidebar border-l border-[#2b3847] flex-col z-10">
+            <div class="p-3 border-b border-[#2b3847] flex items-center justify-between">
                 <div class="flex items-center space-x-3 space-x-reverse">
-                    <div id="user-avatar" class="w-10 h-10 rounded-full bg-yellow-500 text-black font-bold flex items-center justify-center text-sm">U</div>
-                    <div>
-                        <div id="sidebar-username" class="text-sm font-bold text-white flex items-center gap-1">کاربر</div>
+                    <div id="user-avatar" class="w-10 h-10 rounded-full bg-yellow-500 text-black font-bold flex items-center justify-center text-sm shadow">U</div>
+                    <div class="min-w-0">
+                        <div id="sidebar-username" class="text-sm font-bold text-white truncate">کاربر</div>
                         <div class="text-[11px] text-green-400">آنلاین</div>
                     </div>
                 </div>
             </div>
             <div class="p-2">
-                <div class="bg-[#202c33] rounded-lg px-3 py-1.5 flex items-center">
+                <div class="bg-[#212f3d] rounded-xl px-3 py-2 flex items-center">
                     <i class="fa-solid fa-search text-gray-400 text-xs ml-2"></i>
                     <input type="text" placeholder="جستجو..." class="bg-transparent text-xs text-white focus:outline-none w-full">
                 </div>
             </div>
             <div class="flex-1 overflow-y-auto mt-1">
-                <!-- Chat Item: Gap Batman -->
-                <div class="flex items-center px-3 py-2.5 bg-[#202c33]/60 cursor-pointer border-r-4 border-yellow-500">
-                    <div class="w-12 h-12 rounded-full bg-black border border-yellow-500/40 flex items-center justify-center text-yellow-500 text-lg shrink-0 ml-3">
+                <div class="flex items-center px-3 py-3 bg-[#2b3847]/70 cursor-pointer border-r-4 border-yellow-500">
+                    <div class="w-12 h-12 rounded-2xl bg-black border border-yellow-500/40 flex items-center justify-center text-yellow-500 text-lg shrink-0 ml-3">
                         <i class="fa-solid fa-bat"></i>
                     </div>
                     <div class="flex-1 min-w-0">
                         <div class="flex justify-between items-center mb-0.5">
-                            <span class="text-sm font-bold text-white truncate flex items-center gap-1">
-                                گپ بتمنی
-                                <span class="bg-blue-500 text-white rounded-full inline-flex items-center justify-center w-3.5 h-3.5 text-[8px]" title="تیک رسمی"><i class="fa-solid fa-check"></i></span>
-                            </span>
-                            <span class="text-[10px] text-green-400">هم اکنون</span>
+                            <span class="text-sm font-bold text-white truncate">گپ بتمنی</span>
+                            <span class="text-[10px] text-gray-400">هم اکنون</span>
                         </div>
-                        <p class="text-xs text-gray-400 truncate">گپ عمومی رسمی بتمن - گفتگو آزاد</p>
+                        <p class="text-xs text-gray-400 truncate">گپ عمومی رسمی بتمن</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Main Chat Area -->
-        <div class="flex-1 flex flex-col bg-telegram-chat chat-bg">
-            <!-- Chat Header -->
-            <div class="h-14 bg-telegram-header px-4 flex items-center justify-between border-b border-[#202c33] z-10">
+        <div class="flex-1 flex flex-col bg-telegram-main chat-pattern w-full h-full">
+            <!-- Header -->
+            <div class="h-14 bg-telegram-header px-4 flex items-center justify-between border-b border-[#2b3847] z-10 shrink-0">
                 <div class="flex items-center space-x-3 space-x-reverse">
-                    <div class="w-10 h-10 rounded-full bg-black border border-yellow-500/40 flex items-center justify-center text-yellow-500 text-base">
+                    <div class="w-10 h-10 rounded-2xl bg-black border border-yellow-500/40 flex items-center justify-center text-yellow-500 text-base shadow">
                         <i class="fa-solid fa-bat"></i>
                     </div>
                     <div>
                         <div class="text-sm font-bold text-white flex items-center gap-1.5">
                             گپ بتمنی
-                            <span class="bg-blue-500 text-white rounded-full inline-flex items-center justify-center w-4 h-4 text-[9px]" title="تیک رسمی"><i class="fa-solid fa-check"></i></span>
                         </div>
-                        <div class="text-[11px] text-gray-400">اعضای آنلاین در گروه</div>
+                        <div class="text-[11px] text-gray-400">گپ رسمی همگانی</div>
                     </div>
                 </div>
-                <div class="flex items-center space-x-4 space-x-reverse text-gray-300">
-                    <button class="hover:text-yellow-400 transition"><i class="fa-solid fa-search"></i></button>
-                    <button class="hover:text-yellow-400 transition"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                <div class="flex items-center space-x-3 space-x-reverse text-gray-300 md:hidden">
+                    <button onclick="openOwnerBadgeSettings()" id="mobile-owner-btn" class="hidden text-yellow-500 p-1.5"><i class="fa-solid fa-image text-sm"></i></button>
                 </div>
             </div>
 
-            <!-- Messages Container -->
-            <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-3">
-                <!-- پیام خوش‌آمدگویی پیش‌فرض -->
+            <!-- Messages List -->
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-3 md:p-4 space-y-3">
                 <div class="flex justify-center my-2">
-                    <div class="bg-[#182229] text-gray-300 text-[11px] px-3 py-1.5 rounded-xl shadow-md border border-gray-800">
-                        به گپ بتمنی خوش آمدید! ارسال متن، تصویر و ویس آزاد است.
+                    <div class="bg-[#17212b] text-gray-300 text-[11px] px-3.5 py-1.5 rounded-xl shadow border border-[#2b3847]">
+                        به گپ بتمنی خوش آمدید! گفتگو آزاد است.
                     </div>
                 </div>
             </div>
 
-            <!-- Chat Input Footer -->
-            <div class="p-3 bg-telegram-header border-t border-[#202c33] flex items-center gap-2">
-                <button onclick="document.getElementById('image-input').click()" class="text-gray-400 hover:text-yellow-400 p-2 transition" title="ارسال عکس">
-                    <i class="fa-solid fa-image text-lg"></i>
-                </button>
-                <input type="file" id="image-input" accept="image/*" class="hidden" onchange="sendImage(event)">
-
-                <button onclick="sendVoiceMessage()" class="text-gray-400 hover:text-yellow-400 p-2 transition" title="ارسال ویس (شبیه‌ساز)">
-                    <i class="fa-solid fa-microphone text-lg"></i>
-                </button>
-
-                <input type="text" id="message-input" placeholder="پیام خود را بنویسید..." onkeydown="if(event.key==='Enter') sendMessage()" class="flex-1 bg-[#2a3942] text-white text-sm rounded-xl px-4 py-2.5 focus:outline-none border border-transparent focus:border-yellow-500">
-
-                <button onclick="sendMessage()" class="bg-yellow-500 hover:bg-yellow-400 text-black w-10 h-10 rounded-xl flex items-center justify-center transition shadow-md shrink-0">
+            <!-- Input Footer (Fully Mobile Friendly) -->
+            <div class="p-2 md:p-3 bg-telegram-header border-t border-[#2b3847] flex items-center gap-2 shrink-0">
+                <input type="text" id="message-input" placeholder="پیام خود را بنویسید..." onkeydown="if(event.key==='Enter') sendMessage()" class="flex-1 bg-[#212f3d] text-white text-sm rounded-xl px-4 py-3 focus:outline-none border border-transparent focus:border-yellow-500 transition">
+                <button onclick="sendMessage()" class="bg-yellow-500 hover:bg-yellow-400 text-black w-11 h-11 rounded-xl flex items-center justify-center transition shadow-md shrink-0">
                     <i class="fa-solid fa-paper-plane text-sm"></i>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Socket.io Client -->
+    <!-- Hidden file input for Owner Custom Badge Photo -->
+    <input type="file" id="owner-badge-file" accept="image/*" class="hidden" onchange="handleOwnerBadgeUpload(event)">
+
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io();
-        let currentUser = { name: '', isOwner: false };
+        let currentUser = { name: '', isOwner: false, ownerBadgeImg: '' };
 
-        // شبیه‌سازی لودینگ اولیه
         window.addEventListener('load', () => {
             const bar = document.getElementById('loading-bar');
             bar.style.width = '100%';
@@ -196,16 +172,18 @@
                     splash.style.display = 'none';
                     checkLogin();
                 }, 700);
-            }, 1000);
+            }, 800);
         });
 
         function checkLogin() {
             const savedName = localStorage.getItem('batman_chat_name');
             const savedOwner = localStorage.getItem('batman_chat_isOwner') === 'true';
+            const savedBadge = localStorage.getItem('batman_chat_badge') || '';
 
             if (savedName) {
                 currentUser.name = savedName;
                 currentUser.isOwner = savedOwner;
+                currentUser.ownerBadgeImg = savedBadge;
                 initApp();
             } else {
                 document.getElementById('login-modal').classList.remove('hidden');
@@ -239,17 +217,44 @@
 
         function initApp() {
             document.getElementById('app-container').classList.remove('hidden');
-            document.getElementById('sidebar-username').innerHTML = `
-                ${currentUser.name} 
-                ${currentUser.isOwner ? '<span class="bg-blue-500 text-white rounded-full inline-flex items-center justify-center w-3 h-3 text-[7px]"><i class="fa-solid fa-check"></i></span>' : ''}
-            `;
+            updateUserHeaderInfo();
+
+            if (currentUser.isOwner) {
+                document.getElementById('owner-settings-btn').classList.remove('hidden');
+                document.getElementById('mobile-owner-btn').classList.remove('hidden');
+            }
+        }
+
+        function updateUserHeaderInfo() {
+            const badgeHtml = currentUser.ownerBadgeImg ? `<img src="${currentUser.ownerBadgeImg}" class="w-4 h-4 rounded-full object-cover inline-block align-middle ml-0.5 border border-yellow-500">` : '';
+            document.getElementById('sidebar-username').innerHTML = `${escapeHtml(currentUser.name)} ${badgeHtml}`;
             document.getElementById('user-avatar').innerText = currentUser.name.charAt(0).toUpperCase();
         }
 
-        // دریافت تاریخچه و پیام‌ها از سرور
+        function openOwnerBadgeSettings() {
+            if (!currentUser.isOwner) {
+                alert('این قابلیت فقط مخصوص مالک است.');
+                return;
+            }
+            document.getElementById('owner-badge-file').click();
+        }
+
+        function handleOwnerBadgeUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                currentUser.ownerBadgeImg = e.target.result;
+                localStorage.setItem('batman_chat_badge', e.target.result);
+                updateUserHeaderInfo();
+                alert('عکس کوچک مالک با موفقیت تنظیم شد!');
+            };
+            reader.readAsDataURL(file);
+        }
+
         socket.on('init_data', (data) => {
             const container = document.getElementById('chat-messages');
-            // پاک کردن پیام‌های اضافی و نگه داشتن پیام خوش‌آمدگویی
             while (container.children.length > 1) {
                 container.removeChild(container.lastChild);
             }
@@ -268,36 +273,11 @@
             socket.emit('send_message', {
                 name: currentUser.name,
                 isOwner: currentUser.isOwner,
-                text: text,
-                type: 'text'
+                ownerBadgeImg: currentUser.isOwner ? currentUser.ownerBadgeImg : '',
+                text: text
             });
 
             input.value = '';
-        }
-
-        function sendImage(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                socket.emit('send_message', {
-                    name: currentUser.name,
-                    isOwner: currentUser.isOwner,
-                    type: 'image',
-                    mediaUrl: e.target.result
-                });
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function sendVoiceMessage() {
-            socket.emit('send_message', {
-                name: currentUser.name,
-                isOwner: currentUser.isOwner,
-                type: 'voice',
-                text: '🎙️ پیام صوتی (ویس)'
-            });
         }
 
         function appendMessage(msg) {
@@ -306,28 +286,15 @@
             const div = document.createElement('div');
             div.className = `flex flex-col ${isMe ? 'items-end' : 'items-start'} mb-2`;
 
-            let contentHTML = '';
-            if (msg.type === 'image') {
-                contentHTML = `<img src="${msg.mediaUrl}" class="rounded-xl max-w-[220px] max-h-[220px] object-cover mb-1 border border-gray-700">`;
-            } else if (msg.type === 'voice') {
-                contentHTML = `
-                    <div class="flex items-center gap-3 py-1">
-                        <button class="w-8 h-8 rounded-full bg-yellow-500 text-black flex items-center justify-center"><i class="fa-solid fa-play text-xs"></i></button>
-                        <div class="w-32 h-1.5 bg-gray-600 rounded-full overflow-hidden"><div class="w-2/3 h-full bg-yellow-500"></div></div>
-                        <span class="text-[10px] text-gray-300">0:07</span>
-                    </div>
-                `;
-            } else {
-                contentHTML = `<p class="text-sm text-white break-words">${escapeHtml(msg.text)}</p>`;
-            }
+            const badgeHtml = (msg.isOwner && msg.ownerBadgeImg) ? `<img src="${msg.ownerBadgeImg}" class="w-3.5 h-3.5 rounded-full object-cover inline-block align-middle ml-0.5 border border-yellow-500">` : '';
 
             div.innerHTML = `
-                <div class="max-w-[75%] md:max-w-[60%] rounded-2xl px-4 py-2 shadow-md ${isMe ? 'bg-[#005c4b] rounded-tr-none' : 'bg-[#202c33] rounded-tl-none'}">
+                <div class="max-w-[82%] md:max-w-[60%] rounded-2xl px-3.5 py-2 shadow-md ${isMe ? 'bg-[#2b5278] rounded-tr-none' : 'bg-[#182533] rounded-tl-none'}">
                     <div class="text-[11px] font-bold mb-1 flex items-center gap-1 ${msg.isOwner ? 'text-yellow-400' : 'text-blue-400'}">
                         ${escapeHtml(msg.name)}
-                        ${msg.isOwner ? '<span class="bg-blue-500 text-white rounded-full inline-flex items-center justify-center w-3 h-3 text-[7px]"><i class="fa-solid fa-check"></i></span>' : ''}
+                        ${badgeHtml}
                     </div>
-                    ${contentHTML}
+                    <p class="text-sm text-white break-words">${escapeHtml(msg.text)}</p>
                     <div class="text-[9px] text-gray-400 text-left mt-1">${msg.time}</div>
                 </div>
             `;
@@ -336,6 +303,7 @@
         }
 
         function escapeHtml(text) {
+            if (!text) return '';
             return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
         }
     </script>
